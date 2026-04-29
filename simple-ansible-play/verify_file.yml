@@ -1,0 +1,12 @@
+# verify_file.yml
+- name: Verify file exists
+  hosts: all
+  tasks:
+    - name: Check file
+      stat:
+        path: /tmp/tower_test.txt
+      register: file_status
+
+    - name: Print result
+      debug:
+        msg: "File exists: {{ file_status.stat.exists }}"

@@ -1,9 +1,11 @@
 # create_file.yml
-- name: Create a test file
+- name: Create a dynamic file
   hosts: all
   become: yes
+  vars:
+    file_name: "{{ file_name | default('/tmp/default.txt') }}"
   tasks:
     - name: Create file
       file:
-        path: /tmp/tower_test.txt
+        path: "{{ file_name }}"
         state: touch

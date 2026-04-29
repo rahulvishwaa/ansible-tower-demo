@@ -1,1 +1,22 @@
+---
+- name: Simple demo playbook
+  hosts: all
+  become: true
 
+  tasks:
+    - name: Ensure httpd is installed
+      ansible.builtin.package:
+        name: httpd
+        state: present
+
+    - name: Ensure httpd is running and enabled
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Create a test index page
+      ansible.builtin.copy:
+        content: "<h1>Deployed by Ansible Tower</h1>"
+        dest: /var/www/html/index.html
+        mode: '0644'

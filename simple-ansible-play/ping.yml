@@ -1,0 +1,7 @@
+# ping.yml
+- name: Ping Test
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Ping host
+      ping:

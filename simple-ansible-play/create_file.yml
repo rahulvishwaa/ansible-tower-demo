@@ -1,0 +1,9 @@
+# create_file.yml
+- name: Create a test file
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create file
+      file:
+        path: /tmp/tower_test.txt
+        state: touch
